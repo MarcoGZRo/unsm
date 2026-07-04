@@ -7,21 +7,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aurgroup.licoreria.Models.Entities.Account;
-import com.aurgroup.licoreria.Repositories.AccountRepository;
+import com.aurgroup.licoreria.Models.Usuario;
+import com.aurgroup.licoreria.Repositories.UsuarioRepository;
 
 /**
- * AccountController
+ * UsuarioController
  */
 
 @RestController
-@RequestMapping("/api/account")
-public class AccountController {
+@RequestMapping("/api/user")
+public class UsuarioController {
 	@Autowired
-	private AccountRepository accountRepository;
+	private UsuarioRepository accountRepository;
 
 	@GetMapping
-	public List<Account> getAllAccounts(){
+	public List<Usuario> getAllUsuarios(){
 		return accountRepository.findAll();
 	}	
 	
