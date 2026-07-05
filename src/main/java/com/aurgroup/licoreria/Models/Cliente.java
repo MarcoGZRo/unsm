@@ -21,6 +21,8 @@ public class Cliente {
 
   private String tipoDocumento;
 
+  private String numeroDocumento;
+
   private String nombres;
 
   private String apellidos;
@@ -134,6 +136,14 @@ public class Cliente {
 
   public LocalDateTime getFechaRegistro() {
     return fechaRegistro;
+  }
+
+  public String getNumeroDocumento() {
+  	return numeroDocumento;
+  }
+
+  public void setNumeroDocumento(String numeroDocumento) {
+  	this.numeroDocumento = numeroDocumento;
   }
 
 }

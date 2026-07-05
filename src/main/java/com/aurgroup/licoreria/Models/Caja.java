@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 
 /**
  * Caja
@@ -15,7 +17,9 @@ public class Caja {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer idCaja;
-
+  @ManyToMany
+  @JoinColumn(name = "id_sucursal", nullable = false)
+  private Sucursal sucursal;
   @Column(unique = true)
   private String codigo;
 
@@ -62,5 +66,11 @@ public class Caja {
 
   public void setEstado(String estado) {
     this.estado = estado;
+  }
+  public Sucursal getSucursal() {
+    return sucursal;
+  }
+  public void setSucursal(Sucursal sucursal) {
+    this.sucursal = sucursal;
   }
 }

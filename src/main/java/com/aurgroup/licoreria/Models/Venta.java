@@ -9,15 +9,16 @@ public class Venta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idVenta;
+    private Long idVenta;
 
-    private String numeroVenta;
-
-    private String origen;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
     private Cliente cliente;
+
+	@ManyToOne
+    @JoinColumn(name = "id_sucursal", nullable = false)
+    private Sucursal sucursal;
 
     @ManyToOne
     @JoinColumn(name = "id_vendedor")
@@ -33,6 +34,12 @@ public class Venta {
 
     private LocalDateTime fecha;
 
+    private String numeroSerie;
+    
+	private String serie;
+
+    private String origen;
+
     private BigDecimal total;
 
     private String estado;
@@ -40,9 +47,9 @@ public class Venta {
     public Venta() {
     }
 
-    public Venta(Integer idVenta, String numeroVenta, String origen, Cliente cliente, Vendedor vendedor, Caja caja, MetodoPago metodoPago, LocalDateTime fecha, BigDecimal total, String estado) {
+    public Venta(Long idVenta, String numeroSerie, String origen, Cliente cliente, Vendedor vendedor, Caja caja, MetodoPago metodoPago, LocalDateTime fecha, BigDecimal total, String estado) {
         this.idVenta = idVenta;
-        this.numeroVenta = numeroVenta;
+        this.numeroSerie = numeroSerie;
         this.origen = origen;
         this.cliente = cliente;
         this.vendedor = vendedor;
@@ -53,20 +60,20 @@ public class Venta {
         this.estado = estado;
     }
 
-    public Integer getIdVenta() {
+    public Long getIdVenta() {
         return idVenta;
     }
 
-    public void setIdVenta(Integer idVenta) {
+    public void setIdVenta(Long idVenta) {
         this.idVenta = idVenta;
     }
 
-    public String getNumeroVenta() {
-        return numeroVenta;
+    public String getNumeroSerie() {
+        return numeroSerie;
     }
 
-    public void setNumeroVenta(String numeroVenta) {
-        this.numeroVenta = numeroVenta;
+    public void setNumeroSerie(String numeroSerie) {
+        this.numeroSerie = numeroSerie;
     }
 
     public String getOrigen() {

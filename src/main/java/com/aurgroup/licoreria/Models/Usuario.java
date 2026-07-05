@@ -5,6 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Column;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,6 +17,10 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Integer id;
+
+	@ManyToOne
+	@JoinColumn(name = "id_sucursal", nullable = false)
+	private Sucursal sucursal;
 
     @Column(name = "nombre_usuario", nullable = false, length = 80)
     private String nombreUsuario;
@@ -80,6 +87,12 @@ public class Usuario {
 	
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public Sucursal getSucursal() {
+    return sucursal;
+	}
+	public void setSucursal(Sucursal sucursal) {
+		this.sucursal = sucursal;
 	}
 }
 

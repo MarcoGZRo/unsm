@@ -20,9 +20,14 @@ public class Vendedor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idVendedor;
+
 	@OneToOne
     @JoinColumn(name = "id_usuario", nullable = false, unique = true)
 	private Usuario usuario;
+
+	@OneToOne
+    @JoinColumn(name = "id_sucursal", nullable = false)
+    private Sucursal sucursal;
 
 	private String dni;
     
@@ -40,7 +45,7 @@ public class Vendedor {
         return idVendedor;
     }
 
-    public void setIdAdministrador(Integer idVendedor) {
+    public void setIdVendedor(Integer idVendedor) {
         this.idVendedor = idVendedor;
     }
 
@@ -72,9 +77,23 @@ public class Vendedor {
     public String getTelefono() {
         return telefono;
     }
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 
     public void setTelefono(String telefono) {
-        this.apellidos = apellidos;
+        this.telefono = telefono;
+    }
+
+	public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
     }
 }
 

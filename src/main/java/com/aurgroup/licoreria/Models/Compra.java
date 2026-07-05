@@ -9,7 +9,11 @@ public class Compra {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idCompra;
+    private Long idCompra;
+
+	@ManyToMany
+	@JoinColumn(name = "id_sucursal", nullable = false)
+	private Sucursal sucursal;
 
     @ManyToOne
     @JoinColumn(name = "id_proveedor", nullable = false)
@@ -40,7 +44,7 @@ public class Compra {
     public Compra() {
     }
 
-    public Compra(Integer idCompra, Proveedor proveedor, Administrador administrador, MetodoPago metodoPago, LocalDate fechaRegistro, String periodo, String tipoComprobante, String serie, String numeroSerie, BigDecimal total, String estado) {
+    public Compra(Long idCompra, Proveedor proveedor, Administrador administrador, MetodoPago metodoPago, LocalDate fechaRegistro, String periodo, String tipoComprobante, String serie, String numeroSerie, BigDecimal total, String estado) {
         this.idCompra = idCompra;
         this.proveedor = proveedor;
         this.administrador = administrador;
@@ -54,11 +58,11 @@ public class Compra {
         this.estado = estado;
     }
 
-    public Integer getIdCompra() {
+    public Long getIdCompra() {
         return idCompra;
     }
 
-    public void setIdCompra(Integer idCompra) {
+    public void setIdCompra(Long idCompra) {
         this.idCompra = idCompra;
     }
 
@@ -140,5 +144,13 @@ public class Compra {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+	
+	public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
     }
 }

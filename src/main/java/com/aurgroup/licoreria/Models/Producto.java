@@ -24,9 +24,9 @@ public class Producto {
     @JoinColumn(name = "id_categoria", nullable = false)
     private Categoria categoria;
 
-    private Integer stock = 0;
+    private Integer stock;
 
-    private Integer stockMinimo = 0;
+    private Integer stockMinimo;
 
     private BigDecimal precioVenta;
 

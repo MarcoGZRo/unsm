@@ -10,6 +10,10 @@ public class MovimientoInventario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMovimiento;
 
+	@ManyToOne
+    @JoinColumn(name = "id_sucursal", nullable = false)
+    private Sucursal sucursal;
+
     @ManyToOne
     @JoinColumn(name = "id_producto", nullable = false)
     private Producto producto;
@@ -18,28 +22,30 @@ public class MovimientoInventario {
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
-    private String tipo;
+	@ManyToOne
+    @JoinColumn(name = "id_administrador", nullable = true)
+    private Administrador administrador;
+    
+	private String tipo;
 
-    private String causa;
+    private String motivo;
 
     private Integer cantidad;
 
     private LocalDateTime fecha;
 
-    private String observacion;
 
     public MovimientoInventario() {
     }
 
-    public MovimientoInventario(Integer idMovimiento, Producto producto, Usuario usuario, String tipo, String causa, Integer cantidad, LocalDateTime fecha, String observacion) {
+    public MovimientoInventario(Integer idMovimiento, Producto producto, Usuario usuario, String tipo, String motivo, Integer cantidad, LocalDateTime fecha) {
         this.idMovimiento = idMovimiento;
         this.producto = producto;
         this.usuario = usuario;
         this.tipo = tipo;
-        this.causa = causa;
+        this.motivo = motivo;
         this.cantidad = cantidad;
         this.fecha = fecha;
-        this.observacion = observacion;
     }
 
     public Integer getIdMovimiento() {
@@ -75,11 +81,11 @@ public class MovimientoInventario {
     }
 
     public String getCausa() {
-        return causa;
+        return motivo;
     }
 
-    public void setCausa(String causa) {
-        this.causa = causa;
+    public void setCausa(String motivo) {
+        this.motivo = motivo;
     }
 
     public Integer getCantidad() {
@@ -98,11 +104,4 @@ public class MovimientoInventario {
         this.fecha = fecha;
     }
 
-    public String getObservacion() {
-        return observacion;
-    }
-
-    public void setObservacion(String observacion) {
-        this.observacion = observacion;
-    }
 }

@@ -8,7 +8,7 @@ public class CompraDetalle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idCompraDetalle;
+    private Long idCompraDetalle;
 
     @ManyToOne
     @JoinColumn(name = "id_compra", nullable = false)
@@ -27,7 +27,7 @@ public class CompraDetalle {
     public CompraDetalle() {
     }
 
-    public CompraDetalle(Integer idCompraDetalle, Compra compra, Producto producto, Integer cantidad, BigDecimal precioUnitario, BigDecimal subtotal) {
+    public CompraDetalle(Long idCompraDetalle, Compra compra, Producto producto, Integer cantidad, BigDecimal precioUnitario, BigDecimal subtotal) {
         this.idCompraDetalle = idCompraDetalle;
         this.compra = compra;
         this.producto = producto;
@@ -36,11 +36,11 @@ public class CompraDetalle {
         this.subtotal = subtotal;
     }
 
-    public Integer getIdCompraDetalle() {
+    public Long getIdCompraDetalle() {
         return idCompraDetalle;
     }
 
-    public void setIdCompraDetalle(Integer idCompraDetalle) {
+    public void setIdCompraDetalle(Long idCompraDetalle) {
         this.idCompraDetalle = idCompraDetalle;
     }
 

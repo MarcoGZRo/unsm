@@ -9,9 +9,7 @@ public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idPedido;
-
-    private String codigo;
+    private Long idPedido;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
@@ -29,6 +27,8 @@ public class Pedido {
 
     private String telefono;
 
+	private String referencia;
+
     private String direccion;
 
     private String correo;
@@ -36,9 +36,8 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Integer idPedido, String codigo, Cliente cliente, MetodoPago metodoPago, LocalDateTime fecha, BigDecimal total, String estado, String telefono, String direccion, String correo) {
+    public Pedido(Long idPedido, Cliente cliente, MetodoPago metodoPago, String referencia, LocalDateTime fecha, BigDecimal total, String estado, String telefono, String direccion, String correo) {
         this.idPedido = idPedido;
-        this.codigo = codigo;
         this.cliente = cliente;
         this.metodoPago = metodoPago;
         this.fecha = fecha;
@@ -46,23 +45,16 @@ public class Pedido {
         this.estado = estado;
         this.telefono = telefono;
         this.direccion = direccion;
+		this.referencia = referencia;
         this.correo = correo;
     }
 
-    public Integer getIdPedido() {
+    public Long getIdPedido() {
         return idPedido;
     }
 
-    public void setIdPedido(Integer idPedido) {
+    public void setIdPedido(Long idPedido) {
         this.idPedido = idPedido;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public Cliente getCliente() {
@@ -127,5 +119,13 @@ public class Pedido {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+	public String getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
     }
 }

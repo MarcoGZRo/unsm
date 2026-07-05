@@ -14,7 +14,7 @@ public class Reporte {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idReporte;
+    private Long idReporte;
 
     private String tipo;
 
@@ -31,7 +31,7 @@ public class Reporte {
     public Reporte() {
     }
 
-    public Reporte(Integer idReporte, String tipo, LocalDate fechaInicio, LocalDate fechaFin, LocalDateTime fechaGenerado, BigDecimal totalVentas, Integer totalTransacciones) {
+    public Reporte(Long idReporte, String tipo, LocalDate fechaInicio, LocalDate fechaFin, LocalDateTime fechaGenerado, BigDecimal totalVentas, Integer totalTransacciones) {
         this.idReporte = idReporte;
         this.tipo = tipo;
         this.fechaInicio = fechaInicio;
@@ -41,11 +41,11 @@ public class Reporte {
         this.totalTransacciones = totalTransacciones;
     }
 
-    public Integer getIdReporte() {
+    public Long getIdReporte() {
         return idReporte;
     }
 
-    public void setIdReporte(Integer idReporte) {
+    public void setIdReporte(Long idReporte) {
         this.idReporte = idReporte;
     }
 

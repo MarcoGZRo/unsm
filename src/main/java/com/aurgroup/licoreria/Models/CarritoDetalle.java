@@ -8,7 +8,7 @@ public class CarritoDetalle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idCarritoDetalle;
+    private Long idCarritoDetalle;
 
     @ManyToOne
     @JoinColumn(name = "id_carrito", nullable = false)
@@ -27,7 +27,7 @@ public class CarritoDetalle {
     protected CarritoDetalle() {
     }
 
-    public CarritoDetalle(Integer idCarritoDetalle, Carrito carrito, Producto producto, Integer cantidad, BigDecimal precioUnitario, BigDecimal subtotal) {
+    public CarritoDetalle(Long idCarritoDetalle, Carrito carrito, Producto producto, Integer cantidad, BigDecimal precioUnitario, BigDecimal subtotal) {
         this.idCarritoDetalle = idCarritoDetalle;
         this.carrito = carrito;
         this.producto = producto;
@@ -36,11 +36,11 @@ public class CarritoDetalle {
         this.subtotal = subtotal;
     }
 
-    public Integer getIdCarritoDetalle() {
+    public Long getIdCarritoDetalle() {
         return idCarritoDetalle;
     }
 
-    public void setIdCarritoDetalle(Integer idCarritoDetalle) {
+    public void setIdCarritoDetalle(Long idCarritoDetalle) {
         this.idCarritoDetalle = idCarritoDetalle;
     }
 
