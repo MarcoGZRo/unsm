@@ -7,10 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.EnumType;
 
-import com.aurgroup.licoreria.Models.Enums.Estado;
 
 /**
  * Vendedor
@@ -33,8 +30,7 @@ public class Vendedor {
     
 	private String telefono;
 
-    @Enumerated(EnumType.STRING)
-	private Estado estado;
+	private String estado;
 
 	protected Vendedor (){}
     
