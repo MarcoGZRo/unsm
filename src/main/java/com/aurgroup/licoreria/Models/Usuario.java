@@ -8,13 +8,9 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 import java.time.LocalDateTime;
 
-import com.aurgroup.licoreria.Models.Enums.Estado;
-
 @Entity
-@Table(name = "usuario")
 public class Usuario {
 
     @Id
@@ -31,13 +27,9 @@ public class Usuario {
     @Column(nullable = false, length = 255)
     private String clave;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Rol rol;
+	private String rol;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Estado estado;
+    private String estado;
 
     @Column(name = "fecha_registro", nullable = false)
     private LocalDateTime fechaRegistro;
@@ -57,7 +49,7 @@ public class Usuario {
 		return nombreUsuario;
 	}
 	
-	public Rol getRol() {
+	public String getRol() {
 		return rol;
 	}
 	
@@ -65,7 +57,7 @@ public class Usuario {
 		return fechaRegistro;
 	}
 	
-	public Estado getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 	
@@ -77,7 +69,7 @@ public class Usuario {
 		this.nombreUsuario = nombreUsuario;
 	}
 	
-	public void setRol(Rol rol) {
+	public void setRol(String rol) {
 		this.rol = rol;
 	}
 	
@@ -92,10 +84,5 @@ public class Usuario {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-}
-
-enum Rol {
-    admin,
-    vendedor
 }
 
