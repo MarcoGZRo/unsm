@@ -1,12 +1,13 @@
 package com.aurgroup.licoreria.Models;
 
-import org.springframework.data.annotation.Id;
 import com.aurgroup.licoreria.Models.Usuario;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 
 /**
@@ -19,6 +20,7 @@ public class Vendedor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idVendedor;
+	@OneToOne
     @JoinColumn(name = "id_usuario", nullable = false, unique = true)
 	private Usuario usuario;
 

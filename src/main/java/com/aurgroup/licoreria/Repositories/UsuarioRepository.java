@@ -9,10 +9,12 @@ import com.aurgroup.licoreria.Models.Usuario;
 
 /**
  * UsuarioRepository
+ * @author M4riotaku
  */
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
 	Optional<Usuario> findByUserName(String userName);
+	Optional<Usuario> findByEmail(String correo);
 	boolean existUserName(String userName);
 }

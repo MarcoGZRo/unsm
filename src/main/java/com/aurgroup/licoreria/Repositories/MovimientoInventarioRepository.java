@@ -9,7 +9,7 @@ import com.aurgroup.licoreria.Models.MovimientoInventario;
  * MovimientoInventario
  */
 @Repository
-public interface MovimientoInventarioRepository> extends JpaRepository<MovimientoInventario, Long> {
+public interface MovimientoInventarioRepository extends JpaRepository<MovimientoInventario, Long> {
 
 	
 }
