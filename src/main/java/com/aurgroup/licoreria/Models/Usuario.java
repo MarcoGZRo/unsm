@@ -11,6 +11,8 @@ import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
 
+import com.aurgroup.licoreria.Models.Enums.Estado;
+
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -40,8 +42,56 @@ public class Usuario {
     @Column(name = "fecha_registro", nullable = false)
     private LocalDateTime fechaRegistro;
 
-    public Usuario() {
+    protected Usuario() {
     }
+	
+	public Integer getId() {
+		return id;
+	}
+	
+	public String getCorreo() {
+		return correo;
+	}
+	
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+	
+	public Rol getRol() {
+		return rol;
+	}
+	
+	public LocalDateTime getFechaRegistro() {
+		return fechaRegistro;
+	}
+	
+	public Estado getEstado() {
+		return estado;
+	}
+	
+	public String getClave() {
+		return clave;
+	}
+	
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+	
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+	
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+	
+	public void setClave(String clave) {
+		this.clave = clave;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
 }
 
 enum Rol {
@@ -49,7 +99,3 @@ enum Rol {
     vendedor
 }
 
-enum Estado {
-    habilitado,
-    inhabilitado
-}

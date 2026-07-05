@@ -2,14 +2,13 @@ package com.aurgroup.licoreria.Repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import com.aurgroup.licoreria.Models.Usuario;
+import com.aurgroup.licoreria.Models.Producto;
 
 /**
- * UsuarioRepository
+ * ProductoRepository
  */
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
+public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
 	
 }
