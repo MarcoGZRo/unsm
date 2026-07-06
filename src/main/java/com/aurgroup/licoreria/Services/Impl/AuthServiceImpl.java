@@ -20,7 +20,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public Usuario login(String userName, String password) {
         return usuarioRepository
-            .findByUserName(userName)
+            .findByNombreUsuario(userName)
             .filter(u -> u.getClave().equals(password))
             .orElseThrow(() -> new RuntimeException("Invalid credentials"));
     }

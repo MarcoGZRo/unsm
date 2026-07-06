@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 /**
  * Caja
@@ -14,63 +14,66 @@ import jakarta.persistence.ManyToMany;
 @Entity
 public class Caja {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer idCaja;
-  @ManyToMany
-  @JoinColumn(name = "id_sucursal", nullable = false)
-  private Sucursal sucursal;
-  @Column(unique = true)
-  private String codigo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idCaja;
 
-  private String nombre;
+    @ManyToOne
+    @JoinColumn(name = "id_sucursal", nullable = false)
+    private Sucursal sucursal;
 
-  private String estado;
+    @Column(unique = true)
+    private String codigo;
 
-  protected Caja() {
-  }
+    private String nombre;
 
-  public Caja(String codigo, String nombre, String estado) {
-    this.codigo = codigo;
-    this.nombre = nombre;
-    this.estado = estado;
-  }
+    private String estado;
 
-  public Integer getIdCaja() {
-    return idCaja;
-  }
+    protected Caja() {}
 
-  public void setIdCaja(Integer idCaja) {
-    this.idCaja = idCaja;
-  }
+    public Caja(String codigo, String nombre, String estado) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.estado = estado;
+    }
 
-  public String getCodigo() {
-    return codigo;
-  }
+    public Integer getIdCaja() {
+        return idCaja;
+    }
 
-  public void setCodigo(String codigo) {
-    this.codigo = codigo;
-  }
+    public void setIdCaja(Integer idCaja) {
+        this.idCaja = idCaja;
+    }
 
-  public String getNombre() {
-    return nombre;
-  }
+    public String getCodigo() {
+        return codigo;
+    }
 
-  public void setNombre(String nombre) {
-    this.nombre = nombre;
-  }
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 
-  public String getEstado() {
-    return estado;
-  }
+    public String getNombre() {
+        return nombre;
+    }
 
-  public void setEstado(String estado) {
-    this.estado = estado;
-  }
-  public Sucursal getSucursal() {
-    return sucursal;
-  }
-  public void setSucursal(Sucursal sucursal) {
-    this.sucursal = sucursal;
-  }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
+    }
 }

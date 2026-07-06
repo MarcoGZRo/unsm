@@ -1,15 +1,13 @@
 package com.aurgroup.licoreria.Repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
 import com.aurgroup.licoreria.Models.CompraDetalle;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-/**
- * CompraDetalleRepository
- */
-@Repository
-public interface CompraDetalleRepository extends JpaRepository<CompraDetalle, Long>{
+public interface CompraDetalleRepository
+    extends JpaRepository<CompraDetalle, Integer>
+{
+    List<CompraDetalle> findByCompra_IdCompra(Integer idCompra);
 
-	
+    List<CompraDetalle> findByProducto_IdProducto(Integer idProducto);
 }

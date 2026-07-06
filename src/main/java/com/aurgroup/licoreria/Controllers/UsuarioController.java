@@ -3,7 +3,6 @@ package com.aurgroup.licoreria.Controllers;
 import com.aurgroup.licoreria.Models.Usuario;
 import com.aurgroup.licoreria.Services.UsuarioService;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/user")
 public class UsuarioController {
 
-    @Autowired
     private final UsuarioService usuarioService;
 
     public UsuarioController(UsuarioService us) {

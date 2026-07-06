@@ -1,13 +1,11 @@
 package com.aurgroup.licoreria.Models;
 
-import com.aurgroup.licoreria.Models.Usuario;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-
+import jakarta.persistence.OneToOne;
 
 /**
  * idAdministrador
@@ -28,8 +26,7 @@ public class Administrador {
 
     private String apellidos;
 
-    protected Administrador() {
-    }
+    protected Administrador() {}
 
     public Administrador(Usuario usuario, String nombres, String apellidos) {
         this.usuario = usuario;

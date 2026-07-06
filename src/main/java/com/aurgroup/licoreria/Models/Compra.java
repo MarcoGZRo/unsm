@@ -1,8 +1,11 @@
 package com.aurgroup.licoreria.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Compra {
@@ -11,20 +14,29 @@ public class Compra {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCompra;
 
-	@ManyToMany
-	@JoinColumn(name = "id_sucursal", nullable = false)
-	private Sucursal sucursal;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_sucursal", nullable = false)
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    private Sucursal sucursal;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_proveedor", nullable = false)
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     private Proveedor proveedor;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario")
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    private Usuario usuario;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_administrador", nullable = false)
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     private Administrador administrador;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_metodo_pago", nullable = false)
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     private MetodoPago metodoPago;
 
     private LocalDate fechaRegistro;
@@ -37,16 +49,40 @@ public class Compra {
 
     private String numeroSerie;
 
-    private BigDecimal total;
+    private BigDecimal total = BigDecimal.ZERO;
 
-    private String estado;
+    private String estado = "Pendiente";
 
-    public Compra() {
-    }
+    @OneToMany(
+        mappedBy = "compra",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    @JsonIgnoreProperties({ "compra", "hibernateLazyInitializer", "handler" })
+    private List<CompraDetalle> detalles = new ArrayList<>();
 
-    public Compra(Long idCompra, Proveedor proveedor, Administrador administrador, MetodoPago metodoPago, LocalDate fechaRegistro, String periodo, String tipoComprobante, String serie, String numeroSerie, BigDecimal total, String estado) {
+    public Compra() {}
+
+    public Compra(
+        Long idCompra,
+        Sucursal sucursal,
+        Proveedor proveedor,
+        Usuario usuario,
+        Administrador administrador,
+        MetodoPago metodoPago,
+        LocalDate fechaRegistro,
+        String periodo,
+        String tipoComprobante,
+        String serie,
+        String numeroSerie,
+        BigDecimal total,
+        String estado,
+        List<CompraDetalle> detalles
+    ) {
         this.idCompra = idCompra;
+        this.sucursal = sucursal;
         this.proveedor = proveedor;
+        this.usuario = usuario;
         this.administrador = administrador;
         this.metodoPago = metodoPago;
         this.fechaRegistro = fechaRegistro;
@@ -56,6 +92,22 @@ public class Compra {
         this.numeroSerie = numeroSerie;
         this.total = total;
         this.estado = estado;
+        this.detalles = detalles;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        if (this.fechaRegistro == null) {
+            this.fechaRegistro = LocalDate.now();
+        }
+
+        if (this.total == null) {
+            this.total = BigDecimal.ZERO;
+        }
+
+        if (this.estado == null || this.estado.isBlank()) {
+            this.estado = "Pendiente";
+        }
     }
 
     public Long getIdCompra() {
@@ -66,12 +118,28 @@ public class Compra {
         this.idCompra = idCompra;
     }
 
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
+    }
+
     public Proveedor getProveedor() {
         return proveedor;
     }
 
     public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Administrador getAdministrador() {
@@ -145,12 +213,12 @@ public class Compra {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-	
-	public Sucursal getSucursal() {
-        return sucursal;
+
+    public List<CompraDetalle> getDetalles() {
+        return detalles;
     }
 
-    public void setSucursal(Sucursal sucursal) {
-        this.sucursal = sucursal;
+    public void setDetalles(List<CompraDetalle> detalles) {
+        this.detalles = detalles;
     }
 }

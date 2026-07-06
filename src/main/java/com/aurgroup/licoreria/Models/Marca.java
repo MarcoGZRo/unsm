@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
 public class Marca {
@@ -17,8 +16,7 @@ public class Marca {
 
     private String estado;
 
-    public Marca() {
-    }
+    public Marca() {}
 
     public Marca(Integer idMarca, String nombre, String estado) {
         this.idMarca = idMarca;

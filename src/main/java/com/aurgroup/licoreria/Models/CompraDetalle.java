@@ -1,5 +1,6 @@
 package com.aurgroup.licoreria.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 
@@ -8,14 +9,16 @@ public class CompraDetalle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCompraDetalle;
+    private Integer idCompraDetalle;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_compra", nullable = false)
+    @JsonIgnoreProperties({ "detalles", "hibernateLazyInitializer", "handler" })
     private Compra compra;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_producto", nullable = false)
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     private Producto producto;
 
     private Integer cantidad;
@@ -24,10 +27,16 @@ public class CompraDetalle {
 
     private BigDecimal subtotal;
 
-    public CompraDetalle() {
-    }
+    public CompraDetalle() {}
 
-    public CompraDetalle(Long idCompraDetalle, Compra compra, Producto producto, Integer cantidad, BigDecimal precioUnitario, BigDecimal subtotal) {
+    public CompraDetalle(
+        Integer idCompraDetalle,
+        Compra compra,
+        Producto producto,
+        Integer cantidad,
+        BigDecimal precioUnitario,
+        BigDecimal subtotal
+    ) {
         this.idCompraDetalle = idCompraDetalle;
         this.compra = compra;
         this.producto = producto;
@@ -36,11 +45,11 @@ public class CompraDetalle {
         this.subtotal = subtotal;
     }
 
-    public Long getIdCompraDetalle() {
+    public Integer getIdCompraDetalle() {
         return idCompraDetalle;
     }
 
-    public void setIdCompraDetalle(Long idCompraDetalle) {
+    public void setIdCompraDetalle(Integer idCompraDetalle) {
         this.idCompraDetalle = idCompraDetalle;
     }
 

@@ -74,6 +74,14 @@ public class Vendedor {
         return telefono;
     }
 
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
     public String getEstado() {
         return estado;
     }

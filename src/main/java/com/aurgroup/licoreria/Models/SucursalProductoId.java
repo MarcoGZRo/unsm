@@ -1,5 +1,6 @@
 package com.aurgroup.licoreria.Models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,22 +8,24 @@ import java.util.Objects;
 @Embeddable
 public class SucursalProductoId implements Serializable {
 
-    private Integer idSucursal;
+    @Column(name = "id_sucursal")
+    private Long idSucursal;
 
+    @Column(name = "id_producto")
     private Integer idProducto;
 
     public SucursalProductoId() {}
 
-    public SucursalProductoId(Integer idSucursal, Integer idProducto) {
+    public SucursalProductoId(Long idSucursal, Integer idProducto) {
         this.idSucursal = idSucursal;
         this.idProducto = idProducto;
     }
 
-    public Integer getIdSucursal() {
+    public Long getIdSucursal() {
         return idSucursal;
     }
 
-    public void setIdSucursal(Integer idSucursal) {
+    public void setIdSucursal(Long idSucursal) {
         this.idSucursal = idSucursal;
     }
 
@@ -39,7 +42,6 @@ public class SucursalProductoId implements Serializable {
         if (this == o) {
             return true;
         }
-
         if (!(o instanceof SucursalProductoId)) {
             return false;
         }
