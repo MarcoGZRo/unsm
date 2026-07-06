@@ -19,6 +19,7 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<Map<String, String>> handleDataIntegrity(DataIntegrityViolationException ex) {
 		Map<String, String> error = new HashMap<>();
 		error.put("Error", "DATA_INTEGRITY_VIOLATION");
+		error.put("Message", ex.getMessage());
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
 	}
 }

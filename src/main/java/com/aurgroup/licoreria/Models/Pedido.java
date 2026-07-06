@@ -33,6 +33,11 @@ public class Pedido {
 
     private String correo;
 
+    @PrePersist
+    public void onCreate() {
+        this.fecha = LocalDateTime.now();
+    }
+
     public Pedido() {
     }
 

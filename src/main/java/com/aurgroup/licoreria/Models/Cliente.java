@@ -2,10 +2,7 @@ package com.aurgroup.licoreria.Models;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 /**
  * Cliente
@@ -36,8 +33,6 @@ public class Cliente {
   private String correo;
 
   private String estado;
-
-  private LocalDateTime fechaRegistro;
 
   protected Cliente() {
   }
@@ -132,10 +127,6 @@ public class Cliente {
 
   public void setEstado(String estado) {
     this.estado = estado;
-  }
-
-  public LocalDateTime getFechaRegistro() {
-    return fechaRegistro;
   }
 
   public String getNumeroDocumento() {

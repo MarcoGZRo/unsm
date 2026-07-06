@@ -10,8 +10,6 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProducto;
 
-    private String codigoInterno;
-
     private String unidadMedida;
 
     private String nombre;
@@ -24,10 +22,6 @@ public class Producto {
     @JoinColumn(name = "id_categoria", nullable = false)
     private Categoria categoria;
 
-    private Integer stock;
-
-    private Integer stockMinimo;
-
     private BigDecimal precioVenta;
 
     private BigDecimal precioCompra;
@@ -39,15 +33,12 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(Integer idProducto, String codigoInterno, String unidadMedida, String nombre, Marca marca, Categoria categoria, Integer stock, Integer stockMinimo, BigDecimal precioVenta, BigDecimal precioCompra, String descripcion, String estado) {
+    public Producto(Integer idProducto, String unidadMedida, String nombre, Marca marca, Categoria categoria, BigDecimal precioVenta, BigDecimal precioCompra, String descripcion, String estado) {
         this.idProducto = idProducto;
-        this.codigoInterno = codigoInterno;
         this.unidadMedida = unidadMedida;
         this.nombre = nombre;
         this.marca = marca;
         this.categoria = categoria;
-        this.stock = stock;
-        this.stockMinimo = stockMinimo;
         this.precioVenta = precioVenta;
         this.precioCompra = precioCompra;
         this.descripcion = descripcion;
@@ -60,14 +51,6 @@ public class Producto {
 
     public void setIdProducto(Integer idProducto) {
         this.idProducto = idProducto;
-    }
-
-    public String getCodigoInterno() {
-        return codigoInterno;
-    }
-
-    public void setCodigoInterno(String codigoInterno) {
-        this.codigoInterno = codigoInterno;
     }
 
     public String getUnidadMedida() {
@@ -100,22 +83,6 @@ public class Producto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
-    public Integer getStockMinimo() {
-        return stockMinimo;
-    }
-
-    public void setStockMinimo(Integer stockMinimo) {
-        this.stockMinimo = stockMinimo;
     }
 
     public BigDecimal getPrecioVenta() {

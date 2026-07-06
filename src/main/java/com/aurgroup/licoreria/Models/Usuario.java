@@ -1,12 +1,7 @@
 package com.aurgroup.licoreria.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Column;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
@@ -35,8 +30,15 @@ public class Usuario {
 
     private String estado;
 
+	@CreatedDate
     @Column(name = "fecha_registro", nullable = false)
     private LocalDateTime fechaRegistro;
+
+	@PrePersist
+	public void onCreate() {
+		this.fechaRegistro = LocalDateTime.now();
+	}
+
 
     protected Usuario() {
     }

@@ -29,6 +29,12 @@ public class TurnoCaja {
 
     private String estado;
 
+    @PrePersist
+    public void onCreate() {
+        this.fechaApertura= LocalDateTime.now();
+    }
+
+
     public TurnoCaja() {
     }
 

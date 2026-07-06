@@ -18,6 +18,12 @@ public class Carrito {
 
   private String estado;
 
+  @PrePersist
+  public void onCreate() {
+    this.fechaCreacion = LocalDateTime.now();
+  }
+
+
   protected Carrito() {
   }
 
