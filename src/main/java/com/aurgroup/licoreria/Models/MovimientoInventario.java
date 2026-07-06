@@ -1,51 +1,67 @@
 package com.aurgroup.licoreria.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "movimiento_inventario")
 public class MovimientoInventario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMovimiento;
 
-	@ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_sucursal", nullable = false)
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     private Sucursal sucursal;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_producto", nullable = false)
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     private Producto producto;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     private Usuario usuario;
-
-	@ManyToOne
-    @JoinColumn(name = "id_administrador", nullable = true)
-    private Administrador administrador;
-    
-	private String tipo;
-
-    private String motivo;
-
-    private Integer cantidad;
 
     private LocalDateTime fecha;
 
+    private String tipo;
 
-    public MovimientoInventario() {
-    }
+    private Integer cantidad;
 
-    public MovimientoInventario(Integer idMovimiento, Producto producto, Usuario usuario, String tipo, String motivo, Integer cantidad, LocalDateTime fecha) {
+    private String motivo;
+
+    public MovimientoInventario() {}
+
+    public MovimientoInventario(
+        Integer idMovimiento,
+        Sucursal sucursal,
+        Producto producto,
+        Usuario usuario,
+        LocalDateTime fecha,
+        String tipo,
+        Integer cantidad,
+        String motivo
+    ) {
         this.idMovimiento = idMovimiento;
+        this.sucursal = sucursal;
         this.producto = producto;
         this.usuario = usuario;
-        this.tipo = tipo;
-        this.motivo = motivo;
-        this.cantidad = cantidad;
         this.fecha = fecha;
+        this.tipo = tipo;
+        this.cantidad = cantidad;
+        this.motivo = motivo;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        if (this.fecha == null) {
+            this.fecha = LocalDateTime.now();
+        }
     }
 
     public Integer getIdMovimiento() {
@@ -54,6 +70,14 @@ public class MovimientoInventario {
 
     public void setIdMovimiento(Integer idMovimiento) {
         this.idMovimiento = idMovimiento;
+    }
+
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
     }
 
     public Producto getProducto() {
@@ -72,20 +96,20 @@ public class MovimientoInventario {
         this.usuario = usuario;
     }
 
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
+
     public String getTipo() {
         return tipo;
     }
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public String getCausa() {
-        return motivo;
-    }
-
-    public void setCausa(String motivo) {
-        this.motivo = motivo;
     }
 
     public Integer getCantidad() {
@@ -96,12 +120,11 @@ public class MovimientoInventario {
         this.cantidad = cantidad;
     }
 
-    public LocalDateTime getFecha() {
-        return fecha;
+    public String getMotivo() {
+        return motivo;
     }
 
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
     }
-
 }

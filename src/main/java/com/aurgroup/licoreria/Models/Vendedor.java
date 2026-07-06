@@ -1,14 +1,11 @@
 package com.aurgroup.licoreria.Models;
 
-import com.aurgroup.licoreria.Models.Usuario;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-
 
 /**
  * Vendedor
@@ -17,31 +14,31 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Vendedor {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idVendedor;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idVendedor;
 
-	@OneToOne
+    @OneToOne
     @JoinColumn(name = "id_usuario", nullable = false, unique = true)
-	private Usuario usuario;
+    private Usuario usuario;
 
-	@OneToOne
+    @OneToOne
     @JoinColumn(name = "id_sucursal", nullable = false)
     private Sucursal sucursal;
 
-	private String dni;
-    
-	private String nombres;
-    
-	private String apellidos;
-    
-	private String telefono;
+    private String dni;
 
-	private String estado;
+    private String nombres;
 
-	protected Vendedor (){}
-    
-	public Integer getIdVendedor() {
+    private String apellidos;
+
+    private String telefono;
+
+    private String estado;
+
+    protected Vendedor() {}
+
+    public Integer getIdVendedor() {
         return idVendedor;
     }
 
@@ -49,14 +46,13 @@ public class Vendedor {
         this.idVendedor = idVendedor;
     }
 
-	public Usuario getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
     public void setIdUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
 
     public String getNombres() {
         return nombres;
@@ -77,18 +73,20 @@ public class Vendedor {
     public String getTelefono() {
         return telefono;
     }
-	public String getEstado() {
-		return estado;
-	}
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
-	public Sucursal getSucursal() {
+    public Sucursal getSucursal() {
         return sucursal;
     }
 
@@ -96,4 +94,3 @@ public class Vendedor {
         this.sucursal = sucursal;
     }
 }
-

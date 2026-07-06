@@ -3,7 +3,6 @@ package com.aurgroup.licoreria.Controllers;
 import com.aurgroup.licoreria.Models.Usuario;
 import com.aurgroup.licoreria.Services.UsuarioService;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,16 +35,11 @@ public class UsuarioController {
     @PostMapping
     public Usuario postUsuario(@RequestBody Usuario u) {
         return usuarioService.createUser(u);
-        // Optional<Usuario> usuario = usuarioRepository.findByUserName(u.getNombreUsuario());
-        // if(!usuario.isEmpty()) throw new ResponseStatusException(HttpStatus.CONFLICT, "El nombre de usuario ya existe");
     }
 
     @PutMapping
     public Usuario putUsuario(@RequestBody Usuario u) {
         return usuarioService.updateUser(u);
-        // Optional<Usuario> usuario = usuarioRepository.findById(u.getId());
-        // if(usuario.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El usaurio no existe");
-        // return usuarioRepository.save(u);
     }
 
     @DeleteMapping

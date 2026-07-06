@@ -3,11 +3,11 @@ package com.aurgroup.licoreria.Services.Impl;
 import com.aurgroup.licoreria.Models.TurnoCaja;
 import com.aurgroup.licoreria.Repositories.TurnoCajaRepository;
 import com.aurgroup.licoreria.Services.TurnoCajaService;
+import java.time.LocalDateTime;
+import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.List;
 /**
  * AuthService
  * @author MarcoGZRo
@@ -38,8 +38,13 @@ public class TurnoCajaServiceImpl implements TurnoCajaService {
     @Override
     @Transactional(readOnly = true)
     public TurnoCaja getTurnoCajaById(Integer id) {
-        return turnoCajaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Turno de caja no encontrado con ID: " + id));
+        return turnoCajaRepository
+            .findById(id)
+            .orElseThrow(() ->
+                new RuntimeException(
+                    "Turno de caja no encontrado con ID: " + id
+                )
+            );
     }
 
     @Override
@@ -68,7 +73,9 @@ public class TurnoCajaServiceImpl implements TurnoCajaService {
     @Transactional
     public void deleteTurnoCaja(Integer id) {
         if (!turnoCajaRepository.existsById(id)) {
-            throw new RuntimeException("Turno de caja no encontrado con ID: " + id);
+            throw new RuntimeException(
+                "Turno de caja no encontrado con ID: " + id
+            );
         }
 
         turnoCajaRepository.deleteById(id);
